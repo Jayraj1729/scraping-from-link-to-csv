@@ -1,0 +1,13 @@
+ #do stuff
+    #WebDriverWait(driver, 5000).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div/div/div/div/div/div[3]/form/div[7]/div/a[1]"))).click()
+    #WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//li[@id='testing']/ul[@class='dd']//li/a/span[text()='New Test']"))).click()
+
+
+
+#aplicationSearchResults_next > a
+#aplicationSearchResults_next > a
+#aplicationSearchResults_next > a
+
+
+#aplicationSearchResults_paginate > ul > li.paginate_button.active > a
+#aplicationSearchResults_paginate > ul > li:nth-child(8) > a

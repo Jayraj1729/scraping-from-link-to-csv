@@ -23,7 +23,7 @@ select = Select(driver.find_element(By.XPATH, "/html/body/div/div/div/div/div/di
 options = select.options
 print(select)
 #iterate the dropdown list
-for index in range(1, len(options) - 1):
+for index in range(14, len(options) - 1):
 
     #open workbook and add worksheet
     workbook = xlsxwriter.Workbook('option{}.xlsx'.format(index))
@@ -32,11 +32,11 @@ for index in range(1, len(options) - 1):
     #select option and click search
     select.select_by_index(index)    
     driver.find_element(By.XPATH , "/html/body/div/div/div/div/div/div[3]/form/div[7]/div/a[1]").click()
-    time.sleep(10)
+    time.sleep(5)
 
     #show 100 entries
     driver.find_element(By.XPATH , "/html/body/div/div/strong/div/div[4]/div/div[2]/div[2]/div/label/select/option[3]").click()
-    time.sleep(10)
+    time.sleep(5)
 
 
     # to identify the table rows
@@ -51,7 +51,7 @@ for index in range(1, len(options) - 1):
     for i in range(1,len(r)):
         #clicks on pay charges
         WebDriverWait(driver, 5000).until(EC.element_to_be_clickable(driver.find_element(By.XPATH , "/html/body/div/div/strong/div/div[4]/div/table/tbody/tr["+str(i)+"]/td[11]/select/option[2]"))).click()
-        time.sleep(10)
+        time.sleep(5)
         
         #child window switch to child window
         chwd = driver.window_handles
@@ -113,7 +113,7 @@ for index in range(1, len(options) - 1):
        
         #switches back to main window
         driver.switch_to.window(p)
-        time.sleep(10)
+        time.sleep(1)
         print("now next row in table")
 
     

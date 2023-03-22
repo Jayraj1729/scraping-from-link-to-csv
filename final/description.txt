@@ -1,0 +1,19 @@
+the script requires following dependendies
+
+import time
+import xlsxwriter
+from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+
+A nested for loop is used 
+	~the outer loop will iterate through the dropdown options
+	~the inner loop will click on the pay charges for each table entry
+
+from the pry charges page the details is scraped with the help of muliple for loops in case the html structure was repeating and by variable declaration for exception cells and finally a single list is made 
+this list is appended to the excel sheet and the loop goes on to the next row now.....
+
+For the rest of the websites just change the url and run the script.......
