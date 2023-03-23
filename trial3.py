@@ -32,11 +32,11 @@ for index in range(1, len(options) - 1):
     #select option and click search
     select.select_by_index(index)    
     driver.find_element(By.XPATH , "/html/body/div/div/div/div/div/div[3]/form/div[7]/div/a[1]").click()
-    time.sleep(10)
+    time.sleep(5)
 
-    #show 100 entries
-    driver.find_element(By.XPATH , "/html/body/div/div/strong/div/div[4]/div/div[2]/div[2]/div/label/select/option[3]").click()
-    time.sleep(10)
+    # #show 100 entries
+    # driver.find_element(By.XPATH , "/html/body/div/div/strong/div/div[4]/div/div[2]/div[2]/div/label/select/option[3]").click()
+    # time.sleep(5)
 
 
     # to identify the table rows
@@ -110,12 +110,15 @@ for index in range(1, len(options) - 1):
         #worksheet = workbook.add_worksheet()
         worksheet.write_row(1+i,0,data_list1)
         
-       
+        #close child window
+        driver.close()
         #switches back to main window
         driver.switch_to.window(p)
-        time.sleep(10)
+        time.sleep(5)
         print("now next row in table")
 
+    #pagitation click on next
+    driver.find_element(By.CSS_SELECTOR , "#aplicationSearchResults_next").click()
     
     #workbook close
     workbook.close()

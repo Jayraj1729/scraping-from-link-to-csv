@@ -22,7 +22,7 @@ select = Select(driver.find_element(By.XPATH, "/html/body/div/div/div/div/div/di
 options = select.options
 print(select)
 #iterate the dropdown list
-for index in range(14, len(options) - 1):
+for index in range(1, len(options) - 1):
 
     #open workbook and add worksheet
     workbook = xlsxwriter.Workbook('option{}.xlsx'.format(index))
@@ -32,26 +32,18 @@ for index in range(14, len(options) - 1):
     select.select_by_index(index)    
     driver.find_element(By.XPATH , "/html/body/div/div/div/div/div/div[3]/form/div[7]/div/a[1]").click()
     time.sleep(5)
-    
+
     #show 100 entries
     driver.find_element(By.XPATH , "/html/body/div/div/strong/div/div[4]/div/div[2]/div[2]/div/label/select/option[3]").click()
-    time.sleep(10)
-    
-    #new for loop
+    time.sleep(5)
 
+    #get number of pages from pagitation panel note number of pages is 2 less than the count 
+    check = driver.find_elements(By.CLASS_NAME, "paginate_button ")   
+    pg = len(check)
+    print("number of pagitation blocks "+str(pg)+":")
 
-    #get_page_num = WebDriverWait(driver, 5000).until(EC.element_to_be_clickable()).text
-    get_page_num = driver.find_elements(By.XPATH, "/html/body/div/div/strong/div/div[4]/div/div[2]/div[4]/div/ul/li[1]")
-    print("test")
-    #get_page_num = driver.find_element(By.CSS_SELECTOR, "#aplicationSearchResults_paginate > ul > li:nth-child(8)").text
-    #page_num = int(get_page_num)
-    print(len(get_page_num))
-    for page in range(1, page_num):
-        # #show 100 entries
-        # driver.find_element(By.XPATH , "/html/body/div/div/strong/div/div[4]/div/div[2]/div[2]/div/label/select/option[3]").click()
-        # time.sleep(5)
-
-
+    #new for loop to iterate for pages
+    for page_num in range(1,pg-2):
         # to identify the table rows
         r = driver.find_elements(By.XPATH , "/html/body/div/div/strong/div/div[4]/div/table/tbody/tr")
         print(len(r))
@@ -62,10 +54,9 @@ for index in range(14, len(options) - 1):
 
         #iterate the loop
         for i in range(1,len(r)):
-            
             #clicks on pay charges
             WebDriverWait(driver, 5000).until(EC.element_to_be_clickable(driver.find_element(By.XPATH , "/html/body/div/div/strong/div/div[4]/div/table/tbody/tr["+str(i)+"]/td[11]/select/option[2]"))).click()
-            time.sleep(5)
+            time.sleep(8)
             
             #child window switch to child window
             chwd = driver.window_handles
@@ -125,22 +116,14 @@ for index in range(14, len(options) - 1):
             worksheet.write_row(1+i,0,data_list1)
             
             #close child window
-            driver.close()
+            #driver.close()
             #switches back to main window
             driver.switch_to.window(p)
             time.sleep(1)
             print("now next row in table")
 
-            # #click next
-            # driver.find_element(By.CSS_SELECTOR , "#aplicationSearchResults_next").click()
-            # time.sleep(5)        
-    # #pagination with try except try till the next button is clickable
-    # while(True):
-    #     try:
-    #         driver.find_element(By.ID,"aplicationSearchResults_next").click()
-    #     except:
-    #         print("last page of the selected option reached....")
-    #         break
-
+        #click next
+        driver.find_element(By.CSS_SELECTOR , "#aplicationSearchResults_next").click()
+    
     #workbook close
     workbook.close()
