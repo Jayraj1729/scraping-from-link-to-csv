@@ -1,6 +1,7 @@
 import time
 import xlsxwriter
 from selenium import webdriver
+from subprocess import Popen, PIPE
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -125,5 +126,7 @@ for index in range(1, len(options) - 1):
         #click next
         driver.find_element(By.CSS_SELECTOR , "#aplicationSearchResults_next").click()
         time.sleep(5)
+
+        
     #workbook close
     workbook.close()

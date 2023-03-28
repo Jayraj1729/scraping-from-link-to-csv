@@ -11,9 +11,16 @@ from selenium.webdriver.support import expected_conditions as EC
 
 A nested for loop is used 
 	~the outer loop will iterate through the dropdown options
+	~another extra loop is added to slide through the pages
 	~the inner loop will click on the pay charges for each table entry
 
-from the pry charges page the details is scraped with the help of muliple for loops in case the html structure was repeating and by variable declaration for exception cells and finally a single list is made 
+The script opens the website and navigates to the given page. It then iterates through a dropdown list, selecting each option and clicking the search button. For each option, it retrieves data from a table, which is spread across multiple pages.
+
+The script opens each table row, clicks on a "pay charges" button, and extracts data from a pop-up window that opens. The data is stored in a list, and the process is repeated for all rows in the table.
+
+The data is then appended to an Excel file, with a separate worksheet for each option in the dropdown list. The Excel file is saved with the name "option{}.xlsx", where {} is the index of the option.
+
+from the pay charges page the details is scraped with the help of muliple for loops in case the html structure was repeating and by variable declaration for exception cells and finally a single list is made 
 this list is appended to the excel sheet and the loop goes on to the next row now.....
 
 For the rest of the websites just change the url and run the script.......
